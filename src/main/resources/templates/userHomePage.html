@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <title>User Home Page</title>
+</head>
+<body>
+    <form th:object="${user}">
+        <div class="col-xs-8 col-md-offset-2">
+            <h2 style="text-align: center;">User home page</h2>
+            <div class="form-group col-md-6">
+                <label for="name" class="col-form-label">Username</label>
+                <a type="text" th:text="*{username}" class="form-control" id="name"></a>
+            </div>
+
+
+            <div class="form-group col-md-6">
+                <label for="password" class="col-form-label">Password</label>
+                <a type="text" th:text="*{password}" class="form-control" id="password"></a>
+            </div>
+
+            <div th:each="role: ${user.roleSet}">
+                <a th:text="${role.viewName}">, </a>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

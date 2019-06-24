@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Users List</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/shards.min.css">
+</head>
+<body>
+<div class="container">
+    <div class="col-md-offset-1 col-md-10">
+        <h2>User Manager</h2>
+        <hr />
+
+        <input type="button" value="Add User"
+               onclick="window.location.href='showForm'; return false;"
+               class="btn btn-primary" />
+        <br/><br/>
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title">Users List</div>
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Password</th>
+                        <th>Role</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr th:each="tempUser: ${users}">
+
+                                <td th:text="${tempUser.username}"></td>
+                                <td th:text="${tempUser.password}"></td>
+                                <td>
+                                    <div th:each="role: ${tempUser.roleSet}">
+                                        <a th:text="${role.viewName}">, </a>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <a th:href="@{/edit/{id}(id=${tempUser.id})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a>
+
+                                    <a onclick="if (!(confirm('Are you sure you want to delete this customer?'))) return false" th:href="@{/delete/{id}(id=${tempUser.id})}" class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a>
+                                </td>
+
+
+
+                        </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
