@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Admin page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <style id="holderjs-style" type="text/css"></style>
+</head>
+<body style="">
+
+<div class="navbar navbar-inverse navbar-fixed-top" >
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">User Data Base</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row" >
+
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li class="active">
+                    <a target="rightPortal" href="/list">Admin</a>
+                </li>
+                <li>
+                    <a target="rightPortal" href="/home">User</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <!--<div class="col-lg-9" style="background-color:lavenderblush;">-->
+            <iframe seamless="seamless" name="rightPortal" src="/list" width="100%" height="100%"></iframe>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layouts/main-layout :: main-fragment(
+                                                ~{::title},
+                                                ~{:: #home-static-resources},
+                                                ~{fragments/app-fragments :: header},
+                                                ~{:: #home-nav},
+                                                ~{:: #home-main-content}
+                                               )}">
+
+<head>
+    <title>Admin page</title>
+
+    <th:block id="home-static-resources">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <style id="holderjs-style" type="text/css"></style>
+
+    </th:block>
+
+</head>
+<body>
+
+<div id="home-nav" th:replace="~{/fragments/app-fragments :: nav}"></div>
+
+<div id="home-main-content">
+    <div class="col-md-offset-1 col-md-10">
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title">Users List</div>
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Password</th>
+                        <th>Role</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr th:each="tempUser: ${users}">
+
+                        <td th:text="${tempUser.username}"></td>
+                        <td th:text="${tempUser.password}"></td>
+                        <td>
+                            <div th:each="role: ${tempUser.roleSet}">
+                                <a th:text="${role.viewName}">, </a>
+                            </div>
+                        </td>
+
+                        <td>
+                            <a th:href="@{/edit/{id}(id=${tempUser.id})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a>
+
+                            <a onclick="if (!(confirm('Are you sure you want to delete this customer?'))) return false" th:href="@{/delete/{id}(id=${tempUser.id})}" class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a>
+                        </td>
+
+
+
+                    </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+</html>

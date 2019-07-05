@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layouts/main-layout :: main-fragment(
+                                                ~{::title},
+                                                ~{:: #home-static-resources},
+                                                ~{fragments/app-fragments :: header},
+                                                ~{:: #home-nav},
+                                                ~{:: #home-main-content}
+                                               )}">
+
+<head>
+    <title>Admin page</title>
+
+    <th:block id="home-static-resources">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <style id="holderjs-style" type="text/css"></style>
+
+    </th:block>
+
+</head>
+<body>
+
+<div id="home-nav" th:replace="~{/fragments/app-fragments :: nav}"></div>
+
+<div id="home-main-content">
+    <form th:object="${user}">
+        <div class="col-xs-8 col-md-offset-2">
+            <h2 style="text-align: center;">User home page</h2>
+            <div class="form-group col-md-6">
+                <label for="name" class="col-form-label">Username</label>
+                <a type="text" th:text="*{username}" class="form-control" id="name"></a>
+            </div>
+
+
+            <div class="form-group col-md-6">
+                <label for="password" class="col-form-label">Password</label>
+                <a type="text" th:text="*{password}" class="form-control" id="password"></a>
+            </div>
+
+            <label for="roles" class="col-form-label">User Roles</label>
+            <div th:each="role: ${user.roleSet}" id="roles">
+                <a th:text="${role.viewName}">, </a>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+</body>
+</html>

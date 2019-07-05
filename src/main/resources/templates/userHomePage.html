@@ -23,7 +23,8 @@
                 <a type="text" th:text="*{password}" class="form-control" id="password"></a>
             </div>
 
-            <div th:each="role: ${user.roleSet}">
+            <label for="roles" class="col-form-label">User Roles</label>
+            <div th:each="role: ${user.roleSet}" id="roles">
                 <a th:text="${role.viewName}">, </a>
             </div>
         </div>

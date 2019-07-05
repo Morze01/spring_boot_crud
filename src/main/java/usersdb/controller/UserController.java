@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import sun.plugin.liveconnect.SecurityContextHelper;
 import usersdb.model.Role;
 import usersdb.model.User;
 import usersdb.service.RoleService;
@@ -16,7 +15,6 @@ import usersdb.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -124,5 +122,18 @@ public class UserController {
     }
 
 
+    @GetMapping("/admin/list")
+    public String getAdminListPage (Model model) {
+        model.addAttribute("users",userService.getUsers());
+        return "admin";
+    }
+
+    @GetMapping("/admin/home")
+    public String getAdminHomePage (SecurityContextHolder securityContextHolder, Model model) {
+        Authentication authentication = securityContextHolder.getContext().getAuthentication();
+        User currentName = (User)authentication.getPrincipal();
+        model.addAttribute("user",currentName);
+        return "home";
+    }
 
 }

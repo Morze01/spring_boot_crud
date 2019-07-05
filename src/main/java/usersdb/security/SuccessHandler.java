@@ -21,7 +21,7 @@ public class SuccessHandler implements AuthenticationSuccessHandler {
             httpServletResponse.sendRedirect("/home");
         }
         else if (roleRet.contains("ROLE_ADMIN")) {
-            httpServletResponse.sendRedirect("/list");
+            httpServletResponse.sendRedirect("/admin/list");
         }
 
     }
