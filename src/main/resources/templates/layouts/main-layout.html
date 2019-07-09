@@ -3,38 +3,45 @@
       th:fragment="main-fragment (title,
                                     otherStaticResources,
                                     header,
-                                    nav,
+                                    leftSidebar,
                                     mainContent)">
 <head>
     <!--<meta charset="UTF-8" />-->
     <title th:replace="${title}">Page 1 Title</title>
 
 
-    <link rel="stylesheet" type="text/css" th:href="@{/main.css}" href="../../static/main.css"/>
+    <!--<link rel="stylesheet" type="text/css" th:href="@{/main.css}" href="../../static/main.css"/>-->
 
     <!-- Other javascript, css source files -->
     <th:block th:replace="${otherStaticResources}"></th:block>
 </head>
 <body>
-    <div th:replace="${header}">
-        <h2>Page 1</h2>
-    </div>
-    <div class="container-fluid">
-        <div class="row">
 
-                <nav th:replace="${nav}">
-                    <ul>
-                        <li><a href="#">Page 1</a></li>
-                        <li><a href="#">Page 2</a></li>
-                    </ul>
-                </nav>
+<div th:replace="${header}">
+    <h2>Page 1</h2>
+</div>
 
-                <article th:insert="${mainContent}">
-                    <h1>Page 1</h1>
-                    <p>Main content of Page 1</p>
-                </article>
+<div class="container-fluid">
 
+    <div class="row">
+
+        <div class="col-md-2">
+            <br/>
+            <nav th:replace="${leftSidebar}">
+                <ul>
+                    <li><a href="#">Page 1</a></li>
+                    <li><a href="#">Page 2</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="col-md-8">
+            <div th:replace="${mainContent}">
+                <h1>Page 1</h1>
+                <p>Main content of Page 1</p>
+            </div>
         </div>
     </div>
+</div>
 </body>
 </html>
